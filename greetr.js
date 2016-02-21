@@ -58,7 +58,7 @@
 
 		fnLogger: function () {
 			if (console) {
-				console.log(logMessage[this.languahe] + ' ' + this.fullName());
+				console.log(logMessage[this.language] + ' ' + this.fullName());
 			}
 			return this;
 		},
@@ -66,6 +66,27 @@
 		fnsetLang: function (lang) {
 			this.language = lang;
 			this.validateLang();
+			return this;
+		},
+
+		fngreetHTML: function (selector, formal) {
+			if (!$) {
+				throw 'jQuery not loaded.';
+			}
+
+			if (!selector) {
+				throw 'Selector doesnot exist!';
+			}
+
+			var msg;
+			if (formal) {
+				msg = this.fnFormalGreetings();
+			} else {
+				msg = this.fnGreetings();
+			}
+
+			$(selector).html(msg);
+
 			return this;
 		}
 
